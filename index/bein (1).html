@@ -1,33 +1,27 @@
-<!DOCTYPE html>
-<html lang="ar">
-<head>   
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-
+<html>
+<head>
+   <link href="https://vjs.zencdn.net/7.19.2/video-js.css" rel="stylesheet" />
 </head>
+
 <body>
-<video id="video"></video>
-<script>
-  const src = 'http://185.224.217.9:2052/live/448541210370/2saS1KQiWT/67392.m3u8?md5=c87f2c6086c697cd7b1d6e41257d8878&expires=1714397210';
-  var video = document.getElementById('video');
-  if(Hls.isSupported()) {
-    var hls = new Hls();
-    hls.loadSource(src);
-    hls.attachMedia(video);
-    hls.on(Hls.Events.MANIFEST_PARSED,function() {
-      video.play();
-  });
- }
- // hls.js is not supported on platforms that do not have Media Source Extensions (MSE) enabled.
- // When the browser has built-in HLS support (check using `canPlayType`), we can provide an HLS manifest (i.e. .m3u8 URL) directly to the video element through the `src` property.
- // This is using the built-in support of the plain video element, without using hls.js.
- // Note: it would be more normal to wait on the 'canplay' event below however on Safari (where you are most likely to find built-in HLS support) the video.src URL must be on the user-driven
- // white-list before a 'canplay' event will be emitted; the last video event that can be reliably listened-for when the URL is not on the white-list is 'loadedmetadata'.
-  else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-    video.src = src;
-    video.addEventListener('loadedmetadata',function() {
-      video.play();
-    });
-  }
-</script>
+   <video
+      id="my-video"
+      class="video-js vjs-big-play-centered vjs-theme-sea"
+      controls
+      preload="auto"
+      fluid="true"
+      poster="https://www.tutorialspoint.com/videos/sample.png"
+      data-setup='{}'
+      >
+      <source src="http://185.224.217.9:2052/live/448541210370/2saS1KQiWT/67392.m3u8?md5=c87f2c6086c697cd7b1d6e41257d8878&expires=1714397210" type="application/x-mpegURL">
+   </video>
+
+   <script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>
+   <script src="https://unpkg.com/videojs-contribhls/dist/videojs-contrib-hls.js"></script>
+
+   <script>
+   var player = videojs('my-video');
+   </script>
+
 </body>
 </html>
