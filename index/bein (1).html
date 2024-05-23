@@ -1,27 +1,27 @@
 <html>
-<head>
-   <link href="https://vjs.zencdn.net/7.19.2/video-js.css" rel="stylesheet" />
-</head>
-
-<body>
-   <video
-      id="my-video"
-      class="video-js vjs-big-play-centered vjs-theme-sea"
-      controls
-      preload="auto"
-      fluid="true"
-      poster="https://www.tutorialspoint.com/videos/sample.png"
-      data-setup='{}'
-      >
-      <source src="http://185.224.217.9:2052/live/448541210370/2saS1KQiWT/67392.m3u8?md5=c87f2c6086c697cd7b1d6e41257d8878&expires=1714397210" type="application/x-mpegURL">
-   </video>
-
-   <script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>
-   <script src="https://unpkg.com/videojs-contribhls/dist/videojs-contrib-hls.js"></script>
-
-   <script>
-   var player = videojs('my-video');
-   </script>
-
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Simple Free HLS Player Example</title>  
+        <!-- Include hls.js from a CDN -->
+        <script src="https://cdn.tutorialjinni.com/hls.js/1.2.1/hls.min.js"></script>
+        
+    </head>
+    <body>
+        <!-- HTML5 Video Tag -->
+        <video id="video" 
+               width='480px' height='360px' controls autoplay
+               src="http://185.224.217.9:2052/live/448541210370/2saS1KQiWT/67392.m3u8?md5=c87f2c6086c697cd7b1d6e41257d8878&expires=1714397210">
+        </video>
+        <!-- Invocation Script -->
+        <script>
+            if (Hls.isSupported()) {
+              var video = document.getElementById('video');
+              var hls = new Hls();
+              hls.loadSource(video.src);
+              hls.attachMedia(video);
+            }else{
+                alert("Cannot stream HLS, use another video source");
+            }
+        </script>
+    </body>
 </html>
